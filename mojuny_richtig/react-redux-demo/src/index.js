@@ -6,6 +6,10 @@ import "firebase/firestore";
 import "firebase/auth";
 import "./css/styles.css";
 import reportWebVitals from "./reportWebVitals";
+import store from "./redux/store";
+import { Provider } from "react-redux";
+import { getFirebase, ReactReduxFirebaseProvider } from "react-redux-firebase";
+import { createFirestoreInstance } from "redux-firestore";
 
 var config = {
   apiKey: "AIzaSyASeHrl1QRg7Emrf1l5tBKd8mwka3Jkk9Y",
@@ -17,11 +21,24 @@ var config = {
   measurementId: "G-8WDZB8F1BT",
 };
 
+const rrfProps = {
+  firebase,
+  config: {},
+  dispatch: store.dispatch,
+  createFirestoreInstance,
+};
+
 firebase.initializeApp(config);
 firebase.firestore().settings({ timestampsInSnapshots: true });
 
 ReactDOM.render(
-  <App />,
+  <React.StrictMode>
+    <Provider store={store}>
+      <ReactReduxFirebaseProvider {...rrfProps}>
+        <App />
+      </ReactReduxFirebaseProvider>
+    </Provider>
+  </React.StrictMode>,
 
   document.getElementById("root")
 );

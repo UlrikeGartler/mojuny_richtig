@@ -3,24 +3,28 @@ import { connect } from "react-redux";
 import { Button } from "../core-components/Button";
 import { Link } from "react-router-dom";
 import firebase from "firebase";
-import { buyStrategy } from "../redux/actions/mainCategoryActions";
+import { loadCategories } from "../redux/actions/mainCategoryActions";
 
 export function MainCategoryScreen(props) {
-  var db = firebase.firestore();
-  var docRef = db.doc("mainCategory/strategy/subCategory/code/");
+  // var db = firebase.firestore();
+  // var docRef = db.doc("mainCategory/strategy/subCategory/code/");
 
-  docRef
-    .get()
-    .then(function (doc) {
-      if (doc.exists) {
-        console.log(doc.data().text);
-      } else {
-        console.log("no such document");
-      }
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+  // docRef
+  //   .get()
+  //   .then(function (doc) {
+  //     if (doc.exists) {
+  //       console.log(doc.data().text);
+  //     } else {
+  //       console.log("no such document");
+  //     }
+  //   })
+  //   .catch(function (error) {
+  //     console.log(error);
+  //   });
+
+  console.log(props);
+
+  //laden von Kategorien aus der DB
 
   return (
     <div className="screen">
@@ -29,7 +33,7 @@ export function MainCategoryScreen(props) {
       <Link to="/subCategory">
         <Button
           text={props.numOfStrategies}
-          function={props.buyStrategy}
+          function={props.loadCategories}
         ></Button>
       </Link>
     </div>
@@ -49,7 +53,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    buyStrategy: () => dispatch(buyStrategy()),
+    loadCategories: () => dispatch(loadCategories()),
   };
 };
 

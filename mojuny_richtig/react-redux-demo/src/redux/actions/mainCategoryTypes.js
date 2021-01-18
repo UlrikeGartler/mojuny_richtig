@@ -1,2 +1,3 @@
 export const BUY_STRATEGY = "BUY_STRATEGY";
 export const BUY_MOTIVATION = "BUY_MOTIVATION";
+export const LOAD_CATEGORIES = "LOAD_CATEGORIES";
