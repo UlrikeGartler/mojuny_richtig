@@ -12,7 +12,7 @@ import firebase from "firebase";
 
 import { ReactReduxFirebaseProvider } from "react-redux-firebase";
 
-function App() {
+function App(props) {
   return (
     <BrowserRouter>
       <div className="App">

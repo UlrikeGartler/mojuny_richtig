@@ -6,17 +6,16 @@ import { BUY_STRATEGY, LOAD_CATEGORIES } from "../actions/mainCategoryTypes";
 import { BUY_MOTIVATION } from "../actions/mainCategoryTypes";
 
 const inititalState = {
-  numOfStrategies: "strategy",
+  mainCategory: [],
 };
 
-const categoryState = {
-  categoryList: [],
-};
+// const categoryState = {
+//   categoryList: [],
+// };
 
 const mainCategoryReducer = (state = inititalState, action) => {
   switch (action.type) {
     case BUY_STRATEGY:
-      //  console.log("bought strategy");
       return {
         ...state,
         numOfStrategies: "strategy",
@@ -25,13 +24,13 @@ const mainCategoryReducer = (state = inititalState, action) => {
     case BUY_MOTIVATION:
       return {
         ...state,
-        numOfStrategies: "motivation",
+        mainCategory: [...state.mainCategory, action.payload],
       };
 
     case LOAD_CATEGORIES:
       return {
         ...state,
-        //categoryList:
+        mainCategory: [...state.mainCategory, action.payload],
       };
 
     default:

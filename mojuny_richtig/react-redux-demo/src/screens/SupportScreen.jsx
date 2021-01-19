@@ -21,7 +21,7 @@ export function SupportScreen(props) {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    buyStrategy: (project) => dispatch(buyStrategy(project)),
+    // buyStrategy: (project) => dispatch(buyStrategy(project)),
   };
 };
 
