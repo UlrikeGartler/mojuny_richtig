@@ -31,6 +31,7 @@ export function MainCategoryScreen(props) {
   const ref = firebase.firestore().collection("mainCategory");
   console.log(ref);
 
+  //load data
   function getMainCategory() {
     ref.onSnapshot((querySnapshot) => {
       const items = [];
@@ -40,6 +41,9 @@ export function MainCategoryScreen(props) {
       setMainCategory(items);
     });
   }
+
+  //by decision ONCLICK save mainCategoryState
+  const [mainCategoryState, setMainCategoryState] = useState(0);
 
   // dispatch({
   //   type: "LOAD_CATEGORIES",
@@ -77,6 +81,11 @@ export function MainCategoryScreen(props) {
         </div>
       ))}
 
+      <button onClick={() => setMainCategoryState(1)}>
+        {" "}
+        {mainCategoryState}
+      </button>
+
       {/* <h2>Number of cakes - {props.numOfStrategies}</h2>
       <br></br>
       <Link to="/subCategory">
@@ -94,16 +103,14 @@ export function MainCategoryScreen(props) {
  </Link>
  <button onClick={props.buyCake}>Buy Cake</button>*/
 
-const mapStateToProps = (state) => {
-  return {
-    numOfStrategies: state.numOfStrategies,
-  };
-};
+// const mapStateToProps = (state) => ({
+//   mainCategoryState: state.redux.mainCategoryState,
+// });
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    mainCategory: () => dispatch(loadCategories()),
-  };
-};
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     mainCategory: () => dispatch(loadCategories()),
+//   };
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainCategoryScreen);
+export default connect()(MainCategoryScreen);

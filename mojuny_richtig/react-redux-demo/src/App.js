@@ -11,6 +11,7 @@ import { SupportScreen } from "./screens/SupportScreen";
 import firebase from "firebase";
 
 import { ReactReduxFirebaseProvider } from "react-redux-firebase";
+import { SolutionScreen } from "./screens/SolutionScreen";
 
 function App(props) {
   return (
@@ -24,6 +25,7 @@ function App(props) {
           component={MainCategoryScreen}
         />
         <Route path="/subCategory" exact strict component={SubCategoryScreen} />
+        <Route path="/solution" exact strict component={SolutionScreen} />
       </div>
     </BrowserRouter>
   );
