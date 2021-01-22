@@ -1,47 +1,83 @@
-import { firebaseReducer } from "react-redux-firebase";
-import { firestoreReducer } from "redux-firestore";
-import { loadCategories } from "../actions/mainCategoryActions";
+import { STRATEGY, MOTIVATION } from "../actions/mainCategoryTypes";
 
-import { BUY_STRATEGY, LOAD_CATEGORIES } from "../actions/mainCategoryTypes";
-import { BUY_MOTIVATION } from "../actions/mainCategoryTypes";
-
-const inititalState = {
-  mainCategory: [],
+//STATES
+//mainCategoryDecision STATE
+const mainCategoryDecisionState = {
+  mainCategoryDecision: 0,
 };
 
-// const categoryState = {
-//   categoryList: [],
+// //subCategoryDecision STATE
+// const subCategoryDecisionState = {
+//   subCategoryDecision: 0,
 // };
 
-const mainCategoryReducer = (state = inititalState, action) => {
+// //solutionDecision STATE
+// const solutionDecisionState = {
+//   solutionDecision: 0,
+// };
+
+//REDUCERS
+//mainCategoryDesicion REDUCER
+const mainCategoryDecisionReducer = (
+  state = mainCategoryDecisionState,
+  action
+) => {
   switch (action.type) {
-    case BUY_STRATEGY:
+    case STRATEGY:
       return {
         ...state,
-        numOfStrategies: "strategy",
+        mainCategoryDecision: 1,
       };
-
-    case BUY_MOTIVATION:
+    case MOTIVATION:
       return {
         ...state,
-        mainCategory: [...state.mainCategory, action.payload],
+        mainCategoryDecision: 2,
       };
-
-    case LOAD_CATEGORIES:
-      return {
-        ...state,
-        mainCategory: [...state.mainCategory, action.payload],
-      };
-
     default:
       return state;
   }
 };
 
-// Add firebase to reducers
-// export default combineReducers({
-//   firebase: firebaseReducer,
-//   // firestore: firestoreReducer // <- needed if using firestore
-// })
+// //subCategoryDesicion REDUCER (STRATEGY subCategories)
+// const subCategoryDecisionReducer = (
+//   state = subCategoryDecisionState,
+//   action
+// ) => {
+//   switch (action.type) {
+//     case clickASK:
+//       return {
+//         ...state,
+//         subCategoryDecision: 1,
+//       };
+//     case clickCODE:
+//       return {
+//         ...state,
+//         subCategoryDecision: 2,
+//       };
+//     case clickCONCEPT:
+//       return {
+//         ...state,
+//         subCategoryDecision: 3,
+//       };
+//     case clickERROR:
+//       return {
+//         ...state,
+//         subCategoryDecision: 4,
+//       };
+//     case clickGENERAL:
+//       return {
+//         ...state,
+//         subCategoryDecision: 5,
+//       };
+//     case clickLEARN:
+//       return {
+//         ...state,
+//         subCategoryDecision: 6,
+//       };
+//   }
+// };
 
-export default mainCategoryReducer;
+// //solutionDesicion REDUCER
+// const solutionDecisionReducer = (state = solutionDecisionState, action) => {};
+
+export default mainCategoryDecisionReducer;

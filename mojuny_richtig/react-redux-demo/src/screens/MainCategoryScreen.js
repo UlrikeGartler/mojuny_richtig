@@ -3,114 +3,64 @@ import { connect } from "react-redux";
 import { Button } from "../core-components/Button";
 import { Link } from "react-router-dom";
 import firebase from "firebase";
-import { loadCategories } from "../redux/actions/mainCategoryActions";
-import { useSelector } from "react-redux";
-import { useFirestoreConnect } from "react-redux-firebase";
-import mainCategoryReducer from "../redux/reducers/mainCategoryReducer";
-import rootReducer from "../redux/reducers/rootReducer";
+import {
+  takeMotivation,
+  takeStrategy,
+} from "../redux/actions/mainCategoryActions";
 
 export function MainCategoryScreen(props) {
-  // var db = firebase.firestore();
-  // var docRef = db.doc("mainCategory/strategy/subCategory/code/");
+  // const [mainCategory, setMainCategory] = useState([]);
 
-  // docRef
-  //   .get()
-  //   .then(function (doc) {
-  //     if (doc.exists) {
-  //       console.log(doc.data().text);
-  //     } else {
-  //       console.log("no such document");
-  //     }
-  //   })
-  //   .catch(function (error) {
-  //     console.log(error);
-  //   });
+  // const ref = firebase.firestore().collection("mainCategory");
+  // console.log(ref);
 
-  const [mainCategory, setMainCategory] = useState([]);
-
-  const ref = firebase.firestore().collection("mainCategory");
-  console.log(ref);
-
-  //load data
-  function getMainCategory() {
-    ref.onSnapshot((querySnapshot) => {
-      const items = [];
-      querySnapshot.forEach((doc) => {
-        items.push(doc.data());
-      });
-      setMainCategory(items);
-    });
-  }
-
-  //by decision ONCLICK save mainCategoryState
-  const [mainCategoryState, setMainCategoryState] = useState(0);
-
-  // dispatch({
-  //   type: "LOAD_CATEGORIES",
-  // });
-
-  // function loadCategories() {
-  //   return (dispatch, getState, { getFirebase }) => {
-  //     const ref = getFirebase().firestore().collection("mainCategory");
-  //     ref.onSnapshot((querySnapshot) => {
-  //       const items = [];
-  //       querySnapshot
-  //         .forEach((doc) => {
-  //           items.push(doc.data());
-  //         })
-  //         .then(() => {
-  //           dispatch({ type: "LOAD_CATEGORIES" });
-  //         });
-  //       setMainCategory(items);
+  // //load data
+  // function getMainCategory() {
+  //   ref.onSnapshot((querySnapshot) => {
+  //     const items = [];
+  //     querySnapshot.forEach((doc) => {
+  //       items.push(doc.data());
   //     });
-  //   };
+  //     setMainCategory(items);
+  //   });
   // }
 
-  useEffect(() => {
-    getMainCategory();
-  }, []);
+  // useEffect(() => {
+  //   getMainCategory();
+  // }, []);
 
-  //laden von Kategorien aus der DB
+  // //set state for different screen
+  // const [mainCategoryState, setMainCategoryState] = useState("---");
 
+  // console.log(props);
+  console.log(props.mainCategoryDecision);
+
+  //data from within local state (aready here) , second mainCategory = document
   return (
     <div className="screen">
       <h1>Categories</h1>
-      {mainCategory.map((mainCategory) => (
-        <div key={mainCategory.id}>
-          <h2>{mainCategory.label}</h2>
-        </div>
-      ))}
-
-      <button onClick={() => setMainCategoryState(1)}>
-        {" "}
-        {mainCategoryState}
-      </button>
-
-      {/* <h2>Number of cakes - {props.numOfStrategies}</h2>
-      <br></br>
+      <h2>Decision- {props.mainCategoryDecision}</h2>
       <Link to="/subCategory">
-        <Button
-          text={props.numOfStrategies}
-          // function={props.loadCategories}
-        ></Button>
-      </Link> */}
+        <button onClick={props.takeStrategy}>Decide1</button>
+      </Link>
+      <Link to="/subCategory">
+        <button onClick={props.takeMotivation}>Decide2</button>
+      </Link>
     </div>
   );
 }
 
-/* <Link to="/next">
-   <button onClick={props.buyCake}>next</button>
- </Link>
- <button onClick={props.buyCake}>Buy Cake</button>*/
+const mapStateToProps = (state) => {
+  return {
+    mainCategoryDecision: state.mainCategoryDecision,
+  };
+};
 
-// const mapStateToProps = (state) => ({
-//   mainCategoryState: state.redux.mainCategoryState,
-// });
+const mapDispatchToProps = (dispatch) => {
+  return {
+    takeStrategy: () => dispatch(takeStrategy()),
+    takeMotivation: () => dispatch(takeMotivation()),
+  };
+};
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     mainCategory: () => dispatch(loadCategories()),
-//   };
-// };
-
-export default connect()(MainCategoryScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(MainCategoryScreen);

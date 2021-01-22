@@ -7,10 +7,11 @@ import thunk from "redux-thunk";
 import rootReducer from "./reducers/rootReducer";
 import { getFirebase, ReactReduxFirebaseProvider } from "react-redux-firebase";
 import firebase from "firebase";
+import mainCategoryDecisionReducer from "./reducers/mainCategoryReducer";
 
 const store = createStore(
-  rootReducer,
-  composeWithDevTools(applyMiddleware(thunk.withExtraArgument({ getFirebase })))
+  mainCategoryDecisionReducer,
+  composeWithDevTools(applyMiddleware())
 );
 
 export default store;

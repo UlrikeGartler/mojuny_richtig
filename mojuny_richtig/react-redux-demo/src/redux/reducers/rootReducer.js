@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import mainCategoryReducer from "./mainCategoryReducer";
+import mainCategoryDecisionReducer from "./mainCategoryReducer";
 
 const rootReducer = combineReducers({
-  categoryList: mainCategoryReducer, // put in correct thing
+  categoryList: mainCategoryDecisionReducer, // put in correct thing
 });
 
 export default rootReducer;

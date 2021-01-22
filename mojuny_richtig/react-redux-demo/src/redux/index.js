@@ -1,1 +1,1 @@
-export { buyStrategy } from "./actions/mainCategoryActions";
+export { takeStrategy } from "./actions/mainCategoryActions";
