@@ -9,12 +9,12 @@ import {
 } from "../redux/actions/mainCategoryActions";
 
 export function MainCategoryScreen(props) {
+  //local state
   // const [mainCategory, setMainCategory] = useState([]);
 
   // const ref = firebase.firestore().collection("mainCategory");
-  // console.log(ref);
 
-  // //load data
+  //load data
   // function getMainCategory() {
   //   ref.onSnapshot((querySnapshot) => {
   //     const items = [];
@@ -22,6 +22,8 @@ export function MainCategoryScreen(props) {
   //       items.push(doc.data());
   //     });
   //     setMainCategory(items);
+
+  //     console.log(items);
   //   });
   // }
 
@@ -29,30 +31,29 @@ export function MainCategoryScreen(props) {
   //   getMainCategory();
   // }, []);
 
-  // //set state for different screen
-  // const [mainCategoryState, setMainCategoryState] = useState("---");
-
-  // console.log(props);
-  console.log(props.mainCategoryDecision);
-
-  //data from within local state (aready here) , second mainCategory = document
   return (
     <div className="screen">
-      <h1>Categories</h1>
       <h2>Decision- {props.mainCategoryDecision}</h2>
+      <label>
+        Sehr gerne :) <br></br>
+        Welche Art von Unterstützung brauchst du?
+      </label>
+      <br></br>
+      <br></br>
       <Link to="/subCategory">
-        <button onClick={props.takeStrategy}>Decide1</button>
+        <button onClick={props.takeStrategy}>Strategie</button>
       </Link>
       <Link to="/subCategory">
-        <button onClick={props.takeMotivation}>Decide2</button>
+        <button onClick={props.takeMotivation}>Motivation</button>
       </Link>
     </div>
   );
 }
 
+//global state from store
 const mapStateToProps = (state) => {
   return {
-    mainCategoryDecision: state.mainCategoryDecision,
+    mainCategoryDecision: state.main.mainCategoryDecision,
   };
 };
 

@@ -13,7 +13,7 @@ export function SupportScreen(props) {
   return (
     <div className="screen">
       <Link to="/mainCategory">
-        <button>next</button>
+        <button>Ich brauche Unterstützung</button>
       </Link>
     </div>
   );

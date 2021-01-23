@@ -2,77 +2,62 @@ import firebase from "firebase";
 import { BrowserRouter, Route, Switch, Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import React, { useState, useEffect } from "react";
+import { Button } from "../core-components/Button";
+import {
+  clickOnASK,
+  clickOnCODE,
+  clickOnERROR,
+  clickOnGENERAL,
+  clickOnLEARN,
+  clickOnCONCEPT,
+} from "../redux/actions/subCategoryActions";
 
 export function SubCategoryScreen(props) {
-  let input = "";
-
-  if (props.mainCategoryDecision === 1) {
-    input = "mainCategory/strategy/subCategory";
-  } else {
-    input = "mainCategory/motivation/subCategory";
-  }
-
-  //load data
+  //local state
   const [subCategory, setSubCategory] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(props.mainCategoryDecision);
 
-  // const ref = firebase
-  //   .firestore()
-  //   // .collection("mainCategory/strategy/subCategory");
-  //   .collection("mainCategory/strategy/subCategory");
-
-  const db = firebase.firestore();
-  db.collection(input)
-    .get()
-    .then(function (querySnapshot) {
-      const items = [];
-      querySnapshot.forEach(function (doc) {
-        items.push(doc.data());
-        // console.log(doc.label, " => ", doc.data());
-      });
-      setSubCategory(items);
-    });
-
-  // function getSubCategory() {
-  //   ref.onSnapshot((querySnapshot) => {
-  //     const items = [];
-  //     querySnapshot.forEach((doc) => {
-  //       items.push(doc.data());
-  //     });
-  //     setSubCategory(items);
-  //   });
-  // }
-
-  // useEffect(() => {
-  //   getSubCategory();
-  // }, []);
+  const renderAuthButton = () => {
+    if (isLoggedIn === 1) {
+      return (
+        <div>
+          <button onClick={props.clickOnASK}>Ask</button>
+          <button onClick={props.clickOnCODE}>Code</button>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <button onClick={props.clickOnASK}>Concentration</button>
+          <button onClick={props.clickOnCODE}>Stress</button>
+        </div>
+      );
+    }
+  };
 
   return (
     <div className="screen">
-      <h1>SubCategories</h1>
-      {subCategory.map((subCategory) => (
-        <div key={subCategory.id}>
-          <h2>{subCategory.label}</h2>
-        </div>
-      ))}
-
-      <label>Decision: {props.mainCategoryDecision}</label>
-
-      {/* <h2>Number of cakes - {props.numOfStrategies}</h2>
+      <h2>Decision- {props.mainCategoryDecision}</h2>
+      <label>Bitte konkretisiere deinen Unterstützungsbereich: </label>
       <br></br>
-      <Link to="/subCategory">
-        <Button
-          text={props.numOfStrategies}
-          // function={props.loadCategories}
-        ></Button>
-      </Link> */}
+      <br></br>
+      <Link to="/solution">{renderAuthButton()}</Link>
     </div>
   );
 }
-
+//global state from store
 const mapStateToProps = (state) => {
   return {
-    mainCategoryDecision: state.mainCategoryDecision,
+    mainCategoryDecision: state.main.mainCategoryDecision,
+    subCategoryDecision: state.sub.subCategoryDecision,
   };
 };
 
-export default connect(mapStateToProps, null)(SubCategoryScreen);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    clickOnASK: () => dispatch(clickOnASK()),
+    clickOnCODE: () => dispatch(clickOnCODE()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SubCategoryScreen);
