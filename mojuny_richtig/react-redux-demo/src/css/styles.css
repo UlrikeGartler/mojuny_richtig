@@ -31,7 +31,7 @@ body {
 .text {
   color: black;
   text-align: center;
-  font-size: 25px;
+  font-size: 18px;
 }
 
 #screenContainer {
@@ -46,20 +46,23 @@ body {
   /* position: relative; */
 }
 
-/* .button {
+.button {
   font-size: 15px;
-  background-color: rgb(218, 245, 219);
-  border: none;
-  padding: 4%;
-  margin: 10%;
+  /* background-color: rgb(218, 245, 219);
+  border: none; */
+  padding: 0.5%;
+  margin: 1%;
   transition-duration: 0.2s;
-} */
+}
 
- button:hover {
+#supportButton {
+  padding: 4%;
+}
+
+button:hover {
   opacity: 0.2;
   color: white;
- }
-
+}
 
 .table {
   background-color: darkkhaki;
@@ -92,4 +95,3 @@ body {
   display: inline;
   margin-left: 10%;
 }
-

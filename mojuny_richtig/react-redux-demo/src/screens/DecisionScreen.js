@@ -5,8 +5,12 @@ import { BrowserRouter, Route, Switch, Link, Redirect } from "react-router-dom";
 export function DecisionScreen(props) {
   return (
     <div className="screen">
-      <Button text="Fertig für jetzt"></Button>
-      <Button text="Fertig für heute"></Button>
+      <Link to="/support">
+        <Button text="Fertig für jetzt"></Button>
+      </Link>
+      <Link to="/goodbye">
+        <Button text="Fertig für heute"></Button>
+      </Link>
     </div>
   );
 }

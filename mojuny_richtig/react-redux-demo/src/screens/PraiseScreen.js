@@ -6,10 +6,10 @@ import { BrowserRouter, Route, Switch, Link, Redirect } from "react-router-dom";
 export function PraiseScreen(props) {
   return (
     <div className="screen">
-      <Text text="Gutes Gelingen beim Ausprobieren der Option"></Text>
-      <Text text="______________"></Text>
+      <Text text="Gutes Gelingen beim Ausprobieren der Lösungsmöglichkeit"></Text>
+      {/* <Text text="______________"></Text> */}
       <Text text="Toll, dass du dich für eine Handlungsoption entschieden hast :)"></Text>
-      <Link to="/goodbye">
+      <Link to="/decision">
         <Button text="Weiter"></Button>
       </Link>
     </div>

@@ -352,3 +352,183 @@ thunk.withExtraArgument({ getFirebase })
   //   .catch(function (error) {
   //     console.log(error);
   //   });
+
+  SolutionScreen:
+   // //local state
+  // const [askSolutions, setAskSolutions] = useState([]);
+  // // const [isLoggedIn, setIsLoggedIn] = useState(props.subCategoryDecision);
+
+  // // // const renderAuthButton = () => {
+  // // //   if (isLoggedIn === 3) {
+  // // //   } else {
+  // // //   }
+  // // // };
+
+  // //let input = "mainCategory/strategy/subCategory/code/codeSolutions";
+  // let input = "";
+  // if (props.subCategoryDecision === 3) {
+  //   input = "mainCategory/strategy/subCategory/ask/1";
+  // } else {
+  //   input = "mainCategory/strategy/subCategory/code/codeSolutions";
+  // }
+
+  // const ref = firebase.firestore().collection(input);
+
+  // // //load data
+  // function getAskSolutions() {
+  //   ref.onSnapshot((querySnapshot) => {
+  //     const items = [];
+  //     querySnapshot.forEach((doc) => {
+  //       items.push(doc.data());
+  //     });
+  //     setAskSolutions(items);
+  //   });
+  // }
+
+  // useEffect(() => {
+  //   getAskSolutions();
+  // }, []);
+
+
+ <div className="screen">
+      <h2>Decision- {props.subCategoryDecision}</h2>
+
+      <label>Wähle eine Lösung aus: </label>
+      <br></br>
+      <br></br>
+      {askSolutions.map((askSolutions) => (
+        <div key={askSolutions.id}>
+          <Link to="/praise">
+            <Button
+              text={askSolutions.solution}
+              function={askSolutions.function}
+            ></Button>
+          </Link>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+//global state from store
+const mapStateToProps = (state) => {
+  return {
+    subCategoryDecision: state.sub.subCategoryDecision,
+    solutionDecision: state.sol.solutionDecision,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    takeSolution1: () => dispatch(takeSolution1()),
+    takeSolution2: () => dispatch(takeSolution2()),
+  };
+};
+
+solutionScreen:
+//   const [state, setState] = useState([]);
+  //   return <div></div>;
+  // }
+
+  // const mapStateToProps = (state) => {
+  //   console.log(state);
+  //   const mainCategory = state.firestore.ordered.mainCategory;
+
+  return <div></div>;
+  // export default compose(
+//   connect(mapStateToProps),
+//   firestoreConnect((ownProps) => [
+//     {
+//       collection: "mainCategory",
+//       orderBy: ["id", "desc"],
+//     },
+//   ])
+// )(SolutionScreen);
+
+
+//export default connect(mapStateToProps, mapDispatchToProps)(SolutionScreen);
+
+// const loadCode = () => {
+  //   props.clickOnCODE();
+  // };
+  // const loadAsk = () => {
+  //   props.clickOnASK();
+  // };
+
+//array
+// const items = [];
+
+// //Action creators
+// export const clickOnASK = (mainCategory) => {
+//   return (dispatch, getState, { getFirebase }) => {
+//     //async call to db
+//     const firestore = getFirebase().firestore();
+//     firestore
+//       .collection("mainCategory")
+//       .get()
+//       .then(function (querySnapshot) {
+//         querySnapshot.forEach(function (doc) {
+//           //console.log(doc.id, " => ", doc.data());
+//           items.push(doc.data());
+//         });
+//         mainCategory = items;
+//       })
+//       .then(() => {
+//         dispatch({
+//           type: clickASK,
+//           mainCategory: mainCategory,
+//           //solutions: solutions,
+//         });
+//       })
+//       .catch((error) => {
+//         dispatch({
+//           type: ERROR,
+//           error,
+//         });
+//       });
+//     // dispatch({ type: "clickASK" });
+//   };
+// };
+// export const clickOnCODE = () => {
+//   return (dispatch, getState, { getFirebase }) => {
+//     //async call to db
+//     const firestore = getFirebase().firestore();
+//     firestore
+//       .collection("mainCategory/strategy/subCategory/code/codeSolutions")
+//       .get()
+//       .then(function (querySnapshot) {
+//         querySnapshot.forEach(function (doc) {
+//           //  console.log(doc.id, " => ", doc.data());
+//         });
+//       })
+//       .then(() => {
+//         dispatch({
+//           type: clickCODE,
+//         });
+//       })
+//       .catch((error) => {
+//         dispatch({
+//           type: ERROR,
+//           error,
+//         });
+//       });
+//     // dispatch({ type: "clickASK" });
+//   };
+// };
+
+launch.json
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            // "command": "npm start",
+            // "name": "Run npm start",
+            // "request": "launch",
+            "type": "node-terminal"
+        }
+
+    ]
+}

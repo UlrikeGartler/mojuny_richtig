@@ -1,35 +1,36 @@
-import firebase from "firebase";
-import { BrowserRouter, Route, Switch, Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import React, { useState, useEffect } from "react";
 import { Button } from "../core-components/Button";
 import {
   clickOnASK,
   clickOnCODE,
-  clickOnERROR,
-  clickOnGENERAL,
-  clickOnLEARN,
-  clickOnCONCEPT,
+  clickOnConcentration,
+  clickOnStress,
 } from "../redux/actions/subCategoryActions";
+import { compose } from "redux";
 
 export function SubCategoryScreen(props) {
   //local state
-  const [subCategory, setSubCategory] = useState([]);
-  const [isLoggedIn, setIsLoggedIn] = useState(props.mainCategoryDecision);
+  // const [subCategory, setSubCategory] = useState([]);
+  // const [isLoggedIn, setIsLoggedIn] = useState(props.mainCategoryDecision);
 
   const renderAuthButton = () => {
-    if (isLoggedIn === 1) {
+    if (props.mainCategoryDecision === 1) {
       return (
         <div>
-          <button onClick={props.clickOnASK}>Ask</button>
-          <button onClick={props.clickOnCODE}>Code</button>
+          <Button text="Ask" function={props.clickOnASK}></Button>
+          <Button text="Code" function={props.clickOnCODE}></Button>
         </div>
       );
     } else {
       return (
         <div>
-          <button onClick={props.clickOnASK}>Concentration</button>
-          <button onClick={props.clickOnCODE}>Stress</button>
+          <Button
+            text="Concentration"
+            function={props.clickOnConcentration}
+          ></Button>
+          <Button text="Stress" function={props.clickOnStress}></Button>
         </div>
       );
     }
@@ -37,11 +38,17 @@ export function SubCategoryScreen(props) {
 
   return (
     <div className="screen">
-      <h2>Decision- {props.mainCategoryDecision}</h2>
+      {/* <h2>Decision- {props.mainCategoryDecision}</h2> */}
       <label>Bitte konkretisiere deinen Unterstützungsbereich: </label>
       <br></br>
       <br></br>
       <Link to="/solution">{renderAuthButton()}</Link>
+      {/* <Link to="/solution">
+        <button onClick={props.clickOnASK}>Ask</button>
+      </Link>
+      <Link to="/solution">
+        <button onClick={props.clickOnCODE}>Code</button>
+      </Link> */}
     </div>
   );
 }
@@ -57,6 +64,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     clickOnASK: () => dispatch(clickOnASK()),
     clickOnCODE: () => dispatch(clickOnCODE()),
+    clickOnConcentration: () => dispatch(clickOnConcentration()),
+    clickOnStress: () => dispatch(clickOnStress()),
   };
 };
 

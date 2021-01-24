@@ -33,7 +33,7 @@ export function MainCategoryScreen(props) {
 
   return (
     <div className="screen">
-      <h2>Decision- {props.mainCategoryDecision}</h2>
+      {/* <h2>Decision- {props.mainCategoryDecision}</h2> */}
       <label>
         Sehr gerne :) <br></br>
         Welche Art von Unterstützung brauchst du?
@@ -41,10 +41,10 @@ export function MainCategoryScreen(props) {
       <br></br>
       <br></br>
       <Link to="/subCategory">
-        <button onClick={props.takeStrategy}>Strategie</button>
+        <Button text="Strategie" function={props.takeStrategy}></Button>
       </Link>
       <Link to="/subCategory">
-        <button onClick={props.takeMotivation}>Motivation</button>
+        <Button text="Motivation" function={props.takeMotivation}></Button>
       </Link>
     </div>
   );

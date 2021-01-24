@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { Button } from "../core-components/Button";
 import { BrowserRouter, Route, Switch, Link, Redirect } from "react-router-dom";
 import firebase from "firebase";
 import { connect } from "react-redux";
@@ -13,7 +13,7 @@ export function SupportScreen(props) {
   return (
     <div className="screen">
       <Link to="/mainCategory">
-        <button>Ich brauche Unterstützung</button>
+        <Button id="supportButton" text="Ich brauche Unterstützung"></Button>
       </Link>
     </div>
   );

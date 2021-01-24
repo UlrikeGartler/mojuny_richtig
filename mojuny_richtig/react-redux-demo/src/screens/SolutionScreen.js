@@ -7,77 +7,65 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch, Link, Redirect } from "react-router-dom";
 import { takeSolution1, takeSolution2 } from "../redux/actions/solutionActions";
 import { clickCODE } from "../redux/actions/subCategoryTypes.js";
+import { compose } from "redux";
+import { firestoreConnect } from "react-redux-firebase";
 
 export function SolutionScreen(props) {
-  //local state
-  const [askSolutions, setAskSolutions] = useState([]);
-  // const [isLoggedIn, setIsLoggedIn] = useState(props.subCategoryDecision);
+  // let input = "";
 
-  // // const renderAuthButton = () => {
-  // //   if (isLoggedIn === 3) {
-  // //   } else {
-  // //   }
-  // // };
-
-  //let input = "mainCategory/strategy/subCategory/code/codeSolutions";
+  // if (props.subCategoryDecision === 1) {
+  //   input = "mainCategory/strategy/subCategory/ask/1";
+  // } else {
+  //   input =
+  //     "mainCategory/motivation/subCategory/concentration/concentrationSolutions";
+  // }
   let input = "";
-  if (props.subCategoryDecision === 3) {
+
+  if (props.subCategoryDecision === 1) {
     input = "mainCategory/strategy/subCategory/ask/1";
   } else {
-    input = "mainCategory/strategy/subCategory/code/codeSolutions";
+    input =
+      "mainCategory/motivation/subCategory/concentration/concentrationSolutions";
   }
 
-  const ref = firebase.firestore().collection(input);
+  // if (props.subCategoryDecision === 3) {
+  //   input = "mainCategory/motivation/subCategory/stress/stressSolutions";
+  // }
 
-  // //load data
-  function getAskSolutions() {
-    ref.onSnapshot((querySnapshot) => {
+  const [solutions, setSolutions] = useState([]);
+
+  const db = firebase.firestore();
+  db.collection(input)
+    .get()
+    .then(function (querySnapshot) {
       const items = [];
-      querySnapshot.forEach((doc) => {
+      querySnapshot.forEach(function (doc) {
         items.push(doc.data());
+        // console.log(doc.label, " => ", doc.data());
       });
-      setAskSolutions(items);
+      setSolutions(items);
     });
-  }
-
-  useEffect(() => {
-    getAskSolutions();
-  }, []);
 
   return (
     <div className="screen">
-      <h2>Decision- {props.subCategoryDecision}</h2>
+      <h1>Solutions</h1>
+      <Link to="/praise">
+        {solutions.map((solutions) => (
+          <div key={solutions.id}>
+            <Button text={solutions.solution}></Button>
 
-      <label>Wähle eine Lösung aus: </label>
-      <br></br>
-      <br></br>
-      {askSolutions.map((askSolutions) => (
-        <div key={askSolutions.id}>
-          <Link to="/praise">
-            <Button
-              text={askSolutions.solution}
-              function={askSolutions.function}
-            ></Button>
-          </Link>
-        </div>
-      ))}
+            {/* <button>{solutions.solution}</button> */}
+          </div>
+        ))}
+      </Link>
     </div>
   );
 }
 
-//global state from store
 const mapStateToProps = (state) => {
   return {
     subCategoryDecision: state.sub.subCategoryDecision,
-    solutionDecision: state.sol.solutionDecision,
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    takeSolution1: () => dispatch(takeSolution1()),
-    takeSolution2: () => dispatch(takeSolution2()),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(SolutionScreen);
+export default connect(mapStateToProps, null)(SolutionScreen);

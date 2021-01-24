@@ -7,7 +7,7 @@ export function GoodbyeScreen(props) {
   return (
     <div className="screen">
       <Text text="Schönen Feierabend, "> </Text>
-      <Text text="_____________ !"> </Text>
+      <Text text="Ulrike !"> </Text>
       <Button text="Logout"></Button>
     </div>
   );

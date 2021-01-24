@@ -18,7 +18,7 @@ function App() {
     <Provider store={store}>
       <BrowserRouter>
         <div className="App">
-          {/* <Route path="/welcome" exact strict component={WelcomeScreen} /> */}
+          <Route path="/welcome" exact strict component={WelcomeScreen} />
           <Route path="/support" exact strict component={SupportScreen} />
           <Route
             path="/mainCategory"
@@ -33,9 +33,9 @@ function App() {
             component={SubCategoryScreen}
           />
           <Route path="/solution" exact strict component={SolutionScreen} />
-          {/* <Route path="/praise" exact strict component={PraiseScreen} />
+          <Route path="/praise" exact strict component={PraiseScreen} />
           <Route path="/decision" exact strict component={DecisionScreen} />
-          <Route path="/goodbye" exact strict component={GoodbyeScreen} /> */}
+          <Route path="/goodbye" exact strict component={GoodbyeScreen} />
         </div>
       </BrowserRouter>
     </Provider>
