@@ -1,0 +1,156 @@
+// var db = firebase.firestore();
+  // var docRef = db.doc("mainCategory/strategy/subCategory/code/");
+
+  // docRef
+  //   .get()
+  //   .then(function (doc) {
+  //     if (doc.exists) {
+  //       console.log(doc.data().text);
+  //     } else {
+  //       console.log("no such document");
+  //     }
+  //   })
+  //   .catch(function (error) {
+  //     console.log(error);
+  //   });
+
+  // dispatch({
+  //   type: "LOAD_CATEGORIES",
+  // });
+
+  // function loadCategories() {
+  //   return (dispatch, getState, { getFirebase }) => {
+  //     const ref = getFirebase().firestore().collection("mainCategory");
+  //     ref.onSnapshot((querySnapshot) => {
+  //       const items = [];
+  //       querySnapshot
+  //         .forEach((doc) => {
+  //           items.push(doc.data());
+  //         })
+  //         .then(() => {
+  //           dispatch({ type: "LOAD_CATEGORIES" });
+  //         });
+  //       setMainCategory(items);
+  //     });
+  //   };
+  // }
+
+  // const mapStateToProps = (state) => ({
+//   mainCategoryState: state.redux.mainCategoryState,
+// });
+
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     mainCategory: () => dispatch(loadCategories()),
+//   };
+// };
+
+/* <Link to="/next">
+   <button onClick={props.buyCake}>next</button>
+ </Link>
+ <button onClick={props.buyCake}>Buy Cake</button>*/
+
+
+ <label>testButton: </label>
+      <button onClick={() => setMainCategoryState(1)}>
+        {" "}
+        {mainCategoryState}
+      </button>
+      <br></br>
+      <br></br>
+
+       //by decision ONCLICK save mainCategoryState
+  const [mainCategoryState, setMainCategoryState] = useState("---");
+
+  
+import { BUY_STRATEGY, LOAD_CATEGORIES } from "../actions/mainCategoryTypes";
+import { BUY_MOTIVATION } from "../actions/mainCategoryTypes";
+
+const inititalState = {
+  mainCategory: [],
+};
+
+// const categoryState = {
+//   categoryList: [],
+// };
+
+const mainCategoryReducer = (state = inititalState, action) => {
+  switch (action.type) {
+    case BUY_STRATEGY:
+      return {
+        ...state,
+        numOfStrategies: "strategy",
+      };
+
+    case BUY_MOTIVATION:
+      return {
+        ...state,
+        mainCategory: [...state.mainCategory, action.payload],
+      };
+
+    case LOAD_CATEGORIES:
+      return {
+        ...state,
+        mainCategory: [...state.mainCategory, action.payload],
+      };
+
+    default:
+      return state;
+  }
+};
+
+// Add firebase to reducers
+// export default combineReducers({
+//   firebase: firebaseReducer,
+//   // firestore: firestoreReducer // <- needed if using firestore
+// })
+
+export function loadCategories() {
+  return (dispatch, getState, { getFirebase }) => {
+    const ref = getFirebase().firestore().collection("mainCategory");
+    ref.onSnapshot((querySnapshot) => {
+      const items = [];
+      querySnapshot
+        .forEach((doc) => {
+          items.push(doc.data());
+        })
+        .then(() => {
+          dispatch({ type: LOAD_CATEGORIES });
+        });
+    });
+  };
+}
+
+// .then((doc) => {
+//   if (doc.exists) {
+//     const data = doc.data();
+//     console.log(data);
+//     dispatch({ type: "LOAD_CATEGORIES", data });
+//   } else {
+//     console.log("does not exist");
+//   }
+// });
+
+thunk.withExtraArgument({ getFirebase })
+
+{mainCategory.map((mainCategory) => (
+        <div key={mainCategory.id}>
+          {/* <Link to="/subCategory"> */}
+          <Button
+            text={mainCategory.label}
+            // function={() => setMainCategoryState(mainCategory.id)}
+            function={takeStrategy}
+          ></Button>
+          {/* </Link> */}
+        </div>
+      ))}
+
+       <label>{mainCategoryState}</label>
+
+        //get necessary state from store
+  const [mainCategoryState, setMainCategoryState] = useState([]);
+
+// const [takeDecision, setTakeDecision] = useState([
+  //   props.takeStrategy,
+  //   props.takeMotivation,
+  // ]);
