@@ -12,7 +12,7 @@ export function WelcomeScreen(props) {
   //var spaceRef = storageRef.child("Bilder/Hoffnung/achieve-1822503_1920.jpg");
 
   storageRef
-    .child("Bilder/Hoffnung/people-2591874_1920.jpg")
+    .child("Bilder/Startbild/people-2591874_1920.jpg")
     .getDownloadURL()
     .then(function (url) {
       var img = document.getElementById("firstImage");

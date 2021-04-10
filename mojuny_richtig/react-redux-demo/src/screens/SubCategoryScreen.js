@@ -22,24 +22,51 @@ export function SubCategoryScreen(props) {
     if (props.mainCategoryDecision === 1) {
       return (
         <div>
-          <Button text="Ask" function={props.clickOnASK}></Button>
-          <Button text="Code" function={props.clickOnCODE}></Button>
-          <Button text="Concept" function={props.clickOnCONCEPT}></Button>
-          <Button text="Error" function={props.clickOnERROR}></Button>
-          <Button text="General" function={props.clickOnGENERAL}></Button>
-          <Button text="Learn" function={props.clickOnLEARN}></Button>
+          <Button
+            text="Ich weiß nicht, ob ich einen Senior fragen soll."
+            function={props.clickOnASK}
+          ></Button>
+          <Button
+            text="Ich weiß nicht, wie ich weiterprogrammieren soll."
+            function={props.clickOnCODE}
+          ></Button>
+          <Button
+            text="Ich kenne so viele Konzepte nicht."
+            function={props.clickOnCONCEPT}
+          ></Button>
+          <Button
+            text="Ich finde die Lösung für den Error nicht."
+            function={props.clickOnERROR}
+          ></Button>
+          <Button
+            text="Ich brauche generell Coding-Strategien."
+            function={props.clickOnGENERAL}
+          ></Button>
+          <Button
+            text="Ich brauche Ideen für Lernstrategien."
+            function={props.clickOnLEARN}
+          ></Button>
         </div>
       );
     } else {
       return (
         <div>
           <Button
-            text="Concentration"
+            text="Ich kann mich nicht konzentrieren."
             function={props.clickOnConcentration}
           ></Button>
-          <Button text="Stress" function={props.clickOnStress}></Button>
-          <Button text="Motivation" function={props.clickOnMotivation}></Button>
-          <Button text="General" function={props.clickOnGeneral}></Button>
+          <Button
+            text="Ich bin gestresst."
+            function={props.clickOnStress}
+          ></Button>
+          <Button
+            text="Ich kann mich nicht motivieren."
+            function={props.clickOnMotivation}
+          ></Button>
+          <Button
+            text="Ich nehme die Dinge zu ernst."
+            function={props.clickOnGeneral}
+          ></Button>
         </div>
       );
     }

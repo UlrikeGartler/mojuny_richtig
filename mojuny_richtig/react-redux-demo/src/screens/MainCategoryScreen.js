@@ -21,7 +21,7 @@ export function MainCategoryScreen(props) {
       <br></br>
       <br></br>
       <Link to="/subCategory">
-        <Button text="Strategie" function={props.takeStrategy}></Button>
+        <Button text="Strategien" function={props.takeStrategy}></Button>
       </Link>
       <Link to="/subCategory">
         <Button text="Motivation" function={props.takeMotivation}></Button>
